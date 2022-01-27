@@ -36,12 +36,13 @@ int main(void) {
   push(me,&nval,"int");
   printf("%d\n",me->ls.a);
   me++;
-
+ 
   push(me,&val,"string");
   printf("%s\n",me->ls.b);
   me++;
   push(me,&nval,"int");
   me++;
+   //dup(me);
   push(me,&bval,"float");
   printf("%f----\n",me->ls.c);
   
@@ -90,24 +91,24 @@ int main(void) {
   void display_stack(struct Point *p){
      for (int i=top-1;i>=0;i--){
        if (strcmp(Datalist[i],"string")==0){
-         printf("%s\n",p->ls.b);
+         printf("%s\t--------->%s\n",p->ls.b,Datalist[i]);
          p--;
        }
        else if(strcmp(Datalist[i],"int")==0){
-          printf("%d\n",p->ls.a);
+          printf("%d\t\t--------->%s\n",p->ls.a,Datalist[i]);
           p--;
           
        }
        else if(strcmp(Datalist[i],"double")==0){
-          printf("%f\n",p->ls.d);
+          printf("%.2f\t--------->%s\n",p->ls.d,Datalist[i]);
           p--;
        }
        else if(strcmp(Datalist[i],"float")==0){
-          printf("%f\n",p->ls.c);
+          printf("%.2f\t---------->%s\n",p->ls.c,Datalist[i]);
           p--;
        }
        else if (strcmp(Datalist[i],"longint")==0){
-          printf("%ld\n",p->ls.e);
+          printf("%ld\t---------->%s\n",p->ls.e,Datalist[i]);
           p--;
        }
        else{
@@ -122,6 +123,12 @@ void pop(struct Point *p){
   }
   top--;
 }
+void dup(struct Point *p){
+  *(p+1)=*p;
+  p--;
+  top++;
+}
    
+
 
 
